@@ -96,10 +96,6 @@ function appInit() {
 getExchangeRateButton.addEventListener("click", () => {
   if (selectedFromValue.value && selectedToValue.value) {
     validateUserInput(currencyInputValue.value);
-    convertToWithRespectToBaseCurrency(
-      selectedFromValue.value,
-      selectedToValue.value
-    );
   }
 });
 
@@ -108,17 +104,16 @@ const convertToWithRespectToBaseCurrency = async (
   toBeConvertedToCurrancy
 ) => {
   url = `https://api.currencyapi.com/v3/latest?apikey=cur_live_3P3rtAVfUUivaMMDr0xCU3fO3Gd03SdApNXIsXbN&base_currency=${baseCurrency}&currencies=${toBeConvertedToCurrancy}`;
-
+  console.log("converto to base currency called");
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
       const currenciesExchangedRates = data["data"];
       for (const key in currenciesExchangedRates) {
         const value = currenciesExchangedRates[key].value;
+        console.log(value);
         const result = getConvertCurrencyValueFor(value);
         convertedResult.innerHTML = `${currencyInputValue.value} ${baseCurrency} = ${result} ${toBeConvertedToCurrancy}`;
-        console.log(Number(result.toFixed(2)));
-        // console.log(result);
       }
     })
     .catch((error) => {
@@ -142,5 +137,12 @@ function validateUserInput(userInput) {
   if (userInput < 0) {
     validationMessage.textContent = "invalid input";
     validationMessage.style.display = "block";
+  }
+  if (userInput && userInput >= 0) {
+    convertToWithRespectToBaseCurrency(
+      selectedFromValue.value,
+      selectedToValue.value
+    );
+    console.log("called");
   }
 }

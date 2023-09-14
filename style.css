@@ -129,11 +129,11 @@ button {
 }
 button:hover{
   background-color: hsl(210, 100%, 25%);
-  box-shadow: 0 5px 10px hsla(0, 100%, 50%, 0.6);
+  box-shadow: 0 5px 10px hsla(0, 100%, 50%, 0.4);
 }
 button:disabled{
   background-color: hsl(210, 100%, 80%);
-  color: var(--clr-neutral-900);
+  color: var(--clr-neutral-100);
   cursor: not-allowed;
   box-shadow: none;
 }
