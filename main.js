@@ -23,6 +23,7 @@ let showToDropdown = true;
 let showFromDropdown = true;
 
 document.addEventListener("DOMContentLoaded", appInit);
+console.log("js is working");
 
 dropDownFrom.addEventListener("click", () => {
   if (showFromDropdown) {
