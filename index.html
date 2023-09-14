@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <main class="grid-flow" data-flow="large">
+      <h1>Currency Converter</h1>
+      <div class="grid-flow" data-flow="medium">
+        <div class="grid-flow">
+          <div class="flex-group space-between">
+            <label for="currency-input-value">Enter Amount</label>
+            <span id="validation-message">invalid number</span>
+          </div>
+          <input type="number" id="currency-input-value" />
+        </div>
+        <div class="from-to-section grid-flow">
+          <div class="from-and-to flex-group">
+            <div class="from-input grid-flow">
+              <label>From</label>
+              <div class="custom-dropdown" id="from-custom-dropdown">
+                <span id="option-selected-from" class="option-selected"
+                  >i.e USD</span
+                >
+                <ul class="dropdown-options" id="forDropdownOptions"></ul>
+              </div>
+              <input type="hidden" id="selected-value-from" data-value="" />
+            </div>
+            <img src="/images/swap.png" alt="" width="24" height="24" />
+            <div class="from-input grid-flow">
+              <label>To</label>
+              <div class="custom-dropdown" id="to-custom-dropdown">
+                <span id="option-selected-to" class="option-selected"
+                  >i.e PKR</span
+                >
+                <ul class="dropdown-options" id="ToDropdownOptions"></ul>
+              </div>
+              <input type="hidden" id="selected-value-to" />
+            </div>
+          </div>
+        </div>
+        <p id="convertedResult">1 USD = ? PKR</p>
+      </div>
+      <button id="getExchangeRateButton">Get Exchange Rate</button>
+    </main>
+
+    <script src="/main.js"></script>
+  </body>
+</html>
