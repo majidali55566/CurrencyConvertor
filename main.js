@@ -23,7 +23,6 @@ let showToDropdown = true;
 let showFromDropdown = true;
 
 document.addEventListener("DOMContentLoaded", appInit);
-console.log("js is working");
 
 dropDownFrom.addEventListener("click", () => {
   if (showFromDropdown) {
@@ -75,34 +74,20 @@ document.addEventListener("click", (e) => {
   if (!dropDownTo.contains(e.target)) toDropdownOptions.style.display = "none";
 });
 function appInit() {
-  if (!JSON.parse(localStorage.getItem("currencies"))) {
-    console.log("fetching from server");
-    url = `https://api.currencyapi.com/v3/currencies?apikey=cur_live_3P3rtAVfUUivaMMDr0xCU3fO3Gd03SdApNXIsXbN`;
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
-        const currencies = data["data"];
-
-        dropDownArray = [];
-        for (let currency in currencies) {
-          dropDownArray.push(currency);
-        }
-        localStorage.setItem("currencies", JSON.stringify(dropDownArray));
-      });
-  } else {
-    console.log("fetching from local storage");
-    const currencies = JSON.parse(localStorage.getItem("currencies"));
-    for (let currency in currencies) {
-      let listItem = document.createElement("li");
-      listItem.textContent = currencies[currency];
-
-      let listItemClone = listItem.cloneNode(true); // Clone the list item
-
-      toDropdownOptions.appendChild(listItem);
-      fromDropDownOptions.appendChild(listItemClone); // Append the cloned list item
-    }
-  }
-
+  url = `https://api.currencyapi.com/v3/currencies?apikey=cur_live_3P3rtAVfUUivaMMDr0xCU3fO3Gd03SdApNXIsXbN`;
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      const currencies = data["data"];
+      console.log(currencies);
+      for (let currency in currencies) {
+        let listItem = document.createElement("li");
+        listItem.textContent = currency;
+        let listItemClone = listItem.cloneNode(true); // Clone the list item
+        toDropdownOptions.appendChild(listItem);
+        fromDropDownOptions.appendChild(listItemClone); // Append the cloned list item
+      }
+    });
   if (!selectedFromValue.value && !selectedToValue.value) {
     getExchangeRateButton.disabled = true;
   }
